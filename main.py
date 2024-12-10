@@ -8,6 +8,7 @@ import os
 import json
 import numpy as np
 import cv2 as cv
+import argparse
 
 from data_augmentation import augment_data
 
@@ -81,6 +82,11 @@ if __name__=='__main__':
     # Once the BIPED datset is downloaded, put the localization of the dataset
     # for example if the data is in /home/user_name/datasets/BIPED
     #  put "/home/user_name/datasets"
-    BIPED_main_dir ="/home/user_name/datasets"
-
-    main(dataset_dir=BIPED_main_dir)
+    parser = argparse.ArgumentParser(description="BIPED Augmentation")
+    parser.add_argument('--biped_dir',
+                        type=str,
+                        default="home/user_name/datasets",
+                        help='the path to the directory with the input data.')
+    
+    args = parser.parse_args()
+    main(dataset_dir=args.biped_dir)
